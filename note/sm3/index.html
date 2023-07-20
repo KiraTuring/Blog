@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.hidariya.space","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.17.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Boltzmann统计理论 宏观量的统计表达式 配分函数与宏观量 配分函数\(Z\)： \[ Z(\beta, y) \equiv \sum_i \omega_{i} \exp \left(-\beta \varepsilon_{i}\right) \] (单粒子体系，不是系综) 两种宏观量：  有微观对应（如\(U\)），为微观对应量的统计平均值 无微观对应（如\(p\)，\(T\)，\(S\)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="统计力学一捅就寄（3）——Boltzmann统计理论">
+<meta property="og:url" content="https://blog.hidariya.space/note/sm3/index.html">
+<meta property="og:site_name" content="左矢的态矢空间">
+<meta property="og:description" content="Boltzmann统计理论 宏观量的统计表达式 配分函数与宏观量 配分函数\(Z\)： \[ Z(\beta, y) \equiv \sum_i \omega_{i} \exp \left(-\beta \varepsilon_{i}\right) \] (单粒子体系，不是系综) 两种宏观量：  有微观对应（如\(U\)），为微观对应量的统计平均值 无微观对应（如\(p\)，\(T\)，\(S\)">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-04-21T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-06-14T16:03:47.000Z">
+<meta property="article:author" content="Dirac的左矢">
+<meta property="article:tag" content="博客 物理 清华大学">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://blog.hidariya.space/note/sm3/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://blog.hidariya.space/note/sm3/","path":"note/sm3/","title":"统计力学一捅就寄（3）——Boltzmann统计理论"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>统计力学一捅就寄（3）——Boltzmann统计理论 | 左矢的态矢空间</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">左矢的态矢空间</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">My State Vector Space</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-提问箱"><a href="/tape/" rel="section"><i class="fa fa-cube fa-fw"></i>提问箱</a></li><li class="menu-item menu-item-更新日志"><a href="/log/" rel="section"><i class="fa fa-clipboard-list fa-fw"></i>更新日志</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#boltzmann%E7%BB%9F%E8%AE%A1%E7%90%86%E8%AE%BA"><span class="nav-number">1.</span> <span class="nav-text">Boltzmann统计理论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%8F%E8%A7%82%E9%87%8F%E7%9A%84%E7%BB%9F%E8%AE%A1%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">1.1.</span> <span class="nav-text">宏观量的统计表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E5%88%86%E5%87%BD%E6%95%B0%E4%B8%8E%E5%AE%8F%E8%A7%82%E9%87%8F"><span class="nav-number">1.1.1.</span> <span class="nav-text">配分函数与宏观量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#boltzmann%E5%85%B3%E7%B3%BB"><span class="nav-number">1.1.2.</span> <span class="nav-text">Boltzmann关系</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%8A%E7%BB%8F%E5%85%B8%E5%88%86%E5%B8%83"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">半经典分布</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#boltzmann%E5%88%86%E5%B8%83"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">Boltzmann分布</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%8A%E7%BB%8F%E5%85%B8%E8%BF%91%E4%BC%BC"><span class="nav-number">1.2.</span> <span class="nav-text">半经典近似</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E5%B8%B8%E8%A7%81%E5%8D%8A%E7%BB%8F%E5%85%B8%E8%BF%91%E4%BC%BC%E4%BD%93%E7%B3%BB"><span class="nav-number">1.2.1.</span> <span class="nav-text">一些常见半经典近似体系</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Dirac的左矢</p>
+  <div class="site-description" itemprop="description">这是左矢，他搭了个博客，记录他自己的日常</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.hidariya.space/note/sm3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Dirac的左矢">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="左矢的态矢空间">
+      <meta itemprop="description" content="这是左矢，他搭了个博客，记录他自己的日常">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="统计力学一捅就寄（3）——Boltzmann统计理论 | 左矢的态矢空间">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          统计力学一捅就寄（3）——Boltzmann统计理论
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-04-22 00:00:00" itemprop="dateCreated datePublished" datetime="2022-04-22T00:00:00+08:00">2022-04-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-15 00:03:47" itemprop="dateModified" datetime="2022-06-15T00:03:47+08:00">2022-06-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/note/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/note/sm3/" class="post-meta-item leancloud_visitors" data-flag-title="统计力学一捅就寄（3）——Boltzmann统计理论" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="boltzmann统计理论">Boltzmann统计理论</h1>
+<h2 id="宏观量的统计表达式">宏观量的统计表达式</h2>
+<h3 id="配分函数与宏观量">配分函数与宏观量</h3>
+<p><strong>配分函数<span class="math inline">\(Z\)</span>：</strong>
+<span class="math display">\[
+Z(\beta, y) \equiv \sum_i \omega_{i} \exp \left(-\beta
+\varepsilon_{i}\right)
+\]</span> (单粒子体系，不是系综)</p>
+<p>两种宏观量：</p>
+<ol type="1">
+<li>有微观对应（如<span class="math inline">\(U\)</span>），为微观对应量的统计平均值</li>
+<li>无微观对应（如<span class="math inline">\(p\)</span>，<span class="math inline">\(T\)</span>，<span class="math inline">\(S\)</span>等），通过热力学与1相关</li>
+</ol>
+<p>时间平均与微观状态平均（系综平均）等价</p>
+<span id="more"></span>
+<p><strong>一些宏观量的表达式：</strong> <span class="math display">\[
+\begin{aligned}
+  &amp;\alpha=\ln\frac ZN\\
+  &amp;\beta=\frac1{kT}\\
+  &amp;U=\sum_ia_i\varepsilon_i=-N\frac{\partial\ln Z}{\partial\beta}\\
+  &amp;Y_k=\sum_ia_i\frac{\partial\varepsilon_i}{\partial y_k}=-\frac
+N\beta\frac{\partial\ln Z}{\partial y_k}\\
+  &amp;p=\frac N\beta\frac{\partial\ln Z}{\partial V}\\
+  &amp;S-S&#39;=Nk\left(\ln Z-\beta\frac{\partial\ln
+Z}{\partial\beta}\right)\\
+  &amp;F=U-TS=-\frac{N}{\beta}\ln Z-TS&#39;\\
+  \end{aligned}
+\]</span></p>
+<h3 id="boltzmann关系">Boltzmann关系</h3>
+<p><span class="math display">\[
+S=k\ln\Omega\{a_i\}
+\]</span></p>
+<p>熵成为无序的度量</p>
+<h4 id="半经典分布">半经典分布</h4>
+<p><span class="math display">\[
+\begin{aligned}
+  &amp;S&#39;=-k\ln N!=Nk(1-\ln N)\\
+  &amp;F=-\frac{N}{\beta}(\ln Z-\ln N+1)\\
+  &amp;\mu=-\frac{\alpha}{\beta}\\
+  \end{aligned}
+\]</span></p>
+<h4 id="boltzmann分布">Boltzmann分布</h4>
+<p><span class="math display">\[
+\begin{aligned}
+  &amp;S&#39;=0\\
+  &amp;F=-\frac{N}{\beta}\ln Z\\
+  &amp;\mu=-\frac{\ln Z}\beta\\
+  \end{aligned}
+\]</span></p>
+<h2 id="半经典近似">半经典近似</h2>
+<p>（不是半经典分布，两码事）</p>
+<p>能级趋于连续（<span class="math inline">\(\Delta \varepsilon_i\ll
+k_BT\)</span>），用积分代替求和，粒子为相空间中大小为<span class="math inline">\(h^\gamma\)</span>的体积元</p>
+<p>体积元<span class="math inline">\(d\omega=d^\gamma q\ d^\gamma
+p\)</span></p>
+<p><strong>配分函数：</strong> <span class="math display">\[
+\begin{aligned}
+Z(\beta,y)&amp;=\int h^{-\gamma}\exp \left(-\beta
+H(p,q,y)\right)d\omega\\
+&amp;=\int_0^\infty g(\varepsilon)\exp(-\beta\varepsilon)d\varepsilon
+\end{aligned}
+\]</span> <strong>能态密度<span class="math inline">\(g\)</span>：</strong> <span class="math display">\[
+g(\varepsilon)=h^{-\gamma}\frac{d}{d\varepsilon}\int_{H\le\varepsilon}d\omega
+\]</span></p>
+<blockquote>
+<p>注意<span class="math inline">\(Z\)</span>是无量纲数，积分记得在全相空间积分，不要漏变量，也不要漏<span class="math inline">\(h^\gamma\)</span></p>
+</blockquote>
+<p>N维球体积： <span class="math display">\[
+V_N=\frac{2\pi^{N/2}}{N\Gamma(N/2)}R^N
+\]</span></p>
+<h3 id="一些常见半经典近似体系">一些常见半经典近似体系</h3>
+<table>
+<colgroup>
+<col style="width: 9%">
+<col style="width: 36%">
+<col style="width: 23%">
+<col style="width: 29%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>体系</th>
+<th>哈密顿量<span class="math inline">\(\varepsilon=H(q,p)\)</span></th>
+<th>相体积<span class="math inline">\(\Sigma(\varepsilon)\)</span></th>
+<th>能态密度<span class="math inline">\(g(\varepsilon)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>一维谐振子</td>
+<td><span class="math inline">\(\frac{p_x^2}{2m}+\frac12m\omega^2x^2\)</span></td>
+<td><span class="math inline">\(\frac{2\pi\varepsilon}{\omega}\)</span></td>
+<td><span class="math inline">\(\frac{1}{\hbar\omega}\)</span></td>
+</tr>
+<tr class="even">
+<td>转子</td>
+<td><span class="math inline">\(\frac{1}{2I}\left(p_\theta^2+\frac{p_\phi^2}{\sin^2\theta}\right)\)</span></td>
+<td><span class="math inline">\(8\pi^2I\varepsilon\)</span></td>
+<td><span class="math inline">\(\frac{2I}{\hbar^2}\)</span></td>
+</tr>
+<tr class="odd">
+<td>三维非相对论平动</td>
+<td><span class="math inline">\(\frac{1}{2m}\left(p_x^2+p_y^2+p_z^2\right)\)</span></td>
+<td><span class="math inline">\(\frac{4}{3}\pi
+V(2m\varepsilon)^{3/2}\)</span></td>
+<td><span class="math inline">\(\frac{2\pi
+V}{h^3}(2m)^{3/2}\sqrt{\varepsilon}\)</span></td>
+</tr>
+<tr class="even">
+<td>三维相对论平动</td>
+<td><span class="math inline">\(c\sqrt{p_x^2+p_y^2+p_z^2}\)</span></td>
+<td><span class="math inline">\(\frac{4\pi
+V}{3c^3}\varepsilon^3\)</span></td>
+<td><span class="math inline">\(\frac{4\pi
+V}{h^3c^3}\varepsilon^2\)</span></td>
+</tr>
+<tr class="odd">
+<td>二维非相对论平动</td>
+<td><span class="math inline">\(\frac{1}{2m}\left(p_x^2+p_y^2\right)\)</span></td>
+<td><span class="math inline">\(2\pi mV\varepsilon\)</span></td>
+<td><span class="math inline">\(\frac{2\pi mV}{h^2}\)</span></td>
+</tr>
+<tr class="even">
+<td>二维相对论平动</td>
+<td><span class="math inline">\(c\sqrt{p_x^2+p_y^2}\)</span></td>
+<td><span class="math inline">\(\frac{\pi
+V}{c^2}\varepsilon^2\)</span></td>
+<td><span class="math inline">\(\frac{2\pi
+V}{h^2c^2}\varepsilon\)</span></td>
+</tr>
+<tr class="odd">
+<td>一维非相对论平动</td>
+<td><span class="math inline">\(\frac{p_x^2}{2m}\)</span></td>
+<td><span class="math inline">\(2\sqrt{2m\varepsilon}V\)</span></td>
+<td><span class="math inline">\(\sqrt{\frac{2m}{h^2\varepsilon}}V\)</span></td>
+</tr>
+<tr class="even">
+<td>一维相对论平动</td>
+<td><span class="math inline">\(c|p_x|\)</span></td>
+<td><span class="math inline">\(\frac{2V}{c}\varepsilon\)</span></td>
+<td><span class="math inline">\(\frac{2V}{hc}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>つづく</strong></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/note/sm2/" rel="prev" title="统计力学一捅就寄（2）——统计法">
+                  <i class="fa fa-chevron-left"></i> 统计力学一捅就寄（2）——统计法
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/diary/t4w12/" rel="next" title="比日常更乏味的日常">
+                  比日常更乏味的日常 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">京ICP备2021011263号-2 </a>
+  </div>
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Dirac的左矢</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+
+
+  
+
+
+  <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":"98szPtlChQsHmbEI0FL9nl5t-gzGzoHsz","app_key":"urbqFuCtdpr2hzQkmaJ212Ho","server_url":null,"security":false}</script>
+  <script src="/js/third-party/statistics/lean-analytics.js"></script>
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML"}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
